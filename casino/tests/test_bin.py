@@ -5,6 +5,13 @@ def test_bin_init():
     bin = Bin( Outcome("00", 35), Outcome("0", 35))
     assert len(bin.outcomes) == 2
 
+def test_bin_len():
+    bin = Bin( Outcome("00", 35), Outcome("0", 35))
+    assert len(bin) == 2
+
+    bin = Bin( )
+    assert len(bin) == 0
+
 def test_bin_add():
     outcome = Outcome("00", 35)
     bin = Bin( outcome)

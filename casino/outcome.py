@@ -31,6 +31,9 @@ class Outcome(object):
     def __str__(self):
         return '{0} with odds: {1}:1'.format(self._name, self._odds)
 
+    def __repr__(self):
+        return self.__str__()
+
     def __eq__(self, other):
         return type(self) == type(other) and self.name == other.name
 

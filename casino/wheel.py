@@ -29,6 +29,15 @@ class Wheel(object):
         """
         self._bins[index].add(outcome)
 
+    def get(self, index):
+        """returns the bin at any given index
+
+        :index: int between 0 and 37 inclusive
+        :returns: Bin
+
+        """
+        return self._bins[index]
+
     def next(self):
         """returns a rundom bin using rng.sample
         :returns: Bin
@@ -36,3 +45,5 @@ class Wheel(object):
         """
         bin =  self._rng.choice(self._bins)
         return bin
+
+

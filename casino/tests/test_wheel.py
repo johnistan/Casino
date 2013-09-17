@@ -160,3 +160,17 @@ def test_dozenbets_builder():
     builder._buildDozenBets(wheel)
     assert dozen1 in wheel.get(1)
     assert dozen2 not in wheel.get(1)
+
+def test_evenmoneybets_builder():
+    wheel = Wheel()
+    builder = BinBuilder()
+
+    red = Outcome("Red", RouletteGame.EvenMoneyBet)
+    black = Outcome("Black", RouletteGame.EvenMoneyBet)
+    builder._buildEvenMoneyBets(wheel)
+    assert red in wheel.get(1)
+    assert black in wheel.get(2)
+
+    even = Outcome("Even", RouletteGame.EvenMoneyBet)
+    assert even not in wheel.get(3)
+    assert even in wheel.get(2)

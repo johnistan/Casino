@@ -165,3 +165,31 @@ class BinBuilder(object):
             for i in range(0,11):
                 wheel.addOutcome(12 * d + i, outcome)
 
+    def _buildEvenMoneyBets(self, wheel):
+        """All other 1:1 bets
+
+        :wheel: wheel
+        :returns: @todo
+
+        """
+
+
+        low_outcome = Outcome("Low", RouletteGame.EvenMoneyBet)
+        [wheel.addOutcome(i, low_outcome) for i in range(1,19)]
+
+        high_outcome = Outcome("High", RouletteGame.EvenMoneyBet)
+        [wheel.addOutcome(i, high_outcome) for i in range(19,37)]
+
+        even_outcome = Outcome("Even", RouletteGame.EvenMoneyBet)
+        [wheel.addOutcome(i, even_outcome) for i in range(1,19) if i % 2 == 0]
+
+        odd_outcome = Outcome("Odd", RouletteGame.EvenMoneyBet)
+        [wheel.addOutcome(i, odd_outcome) for i in range(1,19) if i % 2 != 0]
+
+        red_outcome = Outcome("Red", RouletteGame.EvenMoneyBet)
+        black_outcome = Outcome("Black", RouletteGame.EvenMoneyBet)
+        for i in range(1,37):
+            if i in [1, 3, 5, 7, 9, 12, 14, 16, 18, 19, 21, 23, 25, 27, 30, 32, 34, 36]:
+                wheel.addOutcome(i, red_outcome)
+            else:
+                wheel.addOutcome(i, black_outcome)

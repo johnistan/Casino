@@ -64,6 +64,12 @@ def test_wheel_next():
 
     assert outcome in random_wheel.next()
 
+def test_wheel_outcome_mapping():
+    wheel = Wheel()
+    assert wheel == BinBuilder().buildBins(wheel)
+    assert Outcome("Number 00", RouletteGame.StraightBet) == wheel.outcomeLookup["Number 00"]
+    assert Outcome("Even", RouletteGame.StraightBet) == wheel.outcomeLookup["Even"]
+
 
 #########################
 
@@ -88,6 +94,10 @@ def test_buildBins():
     wheel = Wheel()
     builder = BinBuilder()
     assert wheel == builder.buildBins(wheel)
+    number1 = Outcome("Number 1", RouletteGame.StraightBet)
+    assert number1 in wheel.get(1)
+    assert Outcome("Number 0", RouletteGame.StraightBet) in wheel.get(0)
+    assert Outcome("Number 00", RouletteGame.StraightBet) in wheel.get(37)
 
 def test_straightbet_builder():
     wheel = Wheel()
@@ -174,3 +184,4 @@ def test_evenmoneybets_builder():
     even = Outcome("Even", RouletteGame.EvenMoneyBet)
     assert even not in wheel.get(3)
     assert even in wheel.get(2)
+

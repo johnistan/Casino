@@ -3,6 +3,7 @@ import random
 
 class Wheel(object):
     """Docstring for Wheel """
+    _outcomeLookup = {}
 
     def __init__(self, rng = None):
         """@todo: to be defined
@@ -20,6 +21,22 @@ class Wheel(object):
     def bins(self):
         return self._bins
 
+    @property
+    def outcomeLookup(self):
+        #if not self._outcomeMapping:
+            #self._outcomeMapping = {o.name:o for o in self.allOutcomes}
+
+        return self._outcomeLookup
+
+    def getOutcome(self, name):
+        """Looks up outcome by name from the mapping built by BinBuilder
+
+        :name: str name ot outcome to lookup
+        :returns: @todo
+
+        """
+        return self._outcomeLookup[name]
+
     def addOutcome(self, index, outcome):
         """Used to replace or add an outcome to a specific outcome
 
@@ -27,6 +44,8 @@ class Wheel(object):
         :outcome: the Outcome to store within the bin
 
         """
+        #Build Mapping
+        self._outcomeLookup[outcome.name] = outcome
         self._bins[index].add(outcome)
 
     def get(self, index):

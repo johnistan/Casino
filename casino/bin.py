@@ -59,7 +59,13 @@ class BinBuilder(object):
         self._wheel = wheel
 
         self._buildStraightBets(wheel)
-
+        self._buildColumnBets(wheel)
+        self._buildCornerBets(wheel)
+        self._buildDozenBets(wheel)
+        self._buildLineBets(wheel)
+        self._buildSplitBets(wheel)
+        self._buildStreetBets(wheel)
+        self._buildEvenMoneyBets(wheel)
         return self._wheel
 
     @staticmethod
@@ -127,7 +133,6 @@ class BinBuilder(object):
         """
         for i in BinBuilder.firstTwoColumnNumbers(11):
             outcome = Outcome("Corner {0}-{1}-{2}-{3}".format(*[i + x for x in [0, 1, 3, 4]]), RouletteGame.CornerBet)
-            print outcome
             [wheel.addOutcome(i+x,outcome) for x in [0, 1, 3, 4]]
 
     def _buildLineBets(self, wheel):
